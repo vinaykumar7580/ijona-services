@@ -1,0 +1,145 @@
+.home {
+  height: 100vh;
+  background-color: rgb(235, 241, 243);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 100px;
+  background: linear-gradient(223.23deg, rgb(133, 13, 99), rgb(92, 98, 214));
+}
+
+.logobox {
+  width: 40px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.profilebox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile_name {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.logout_button {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: rgb(82, 61, 216);
+  color: white;
+}
+
+.logout_button:hover {
+  background-color: rgb(65, 43, 215);
+}
+
+main {
+  width: 70%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 40px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.heading_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading {
+  font-family: sans-serif;
+}
+
+.addbutton {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: rgb(126, 194, 23);
+  color: white;
+}
+
+.addbutton:hover {
+  background-color: rgb(140, 214, 29);
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+th {
+  background-color: rgb(126, 194, 23);
+  color: #ffffff;
+  padding: 10px 0px;
+}
+
+td {
+  padding: 10px 0px;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(126, 194, 23);
+  color: #ffffff;
+}
+
+.edit {
+  padding: 7px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: rgb(92, 98, 214);
+}
+
+.delete_button {
+  width: 20px;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.previous_button,
+.next_button {
+  border:none;
+  outline:none;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  padding:0px 10px;
+  background-color: blueviolet;
+  color:white;
+}
+
+.page {
+  font-weight: bold;
+  font-size: 20px;
+}

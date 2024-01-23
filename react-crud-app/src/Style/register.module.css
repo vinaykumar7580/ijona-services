@@ -1,0 +1,47 @@
+.register {
+  background: linear-gradient(223.23deg, rgb(133, 13, 99), rgb(92, 98, 214));
+  padding: 180px;
+}
+
+.container {
+  width: 30%;
+  text-align: left;
+  margin: auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.heading {
+  font-family: sans-serif;
+}
+
+.input {
+  width: 95%;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 7px;
+  font-size: 16px;
+}
+.button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: rgb(92, 98, 214);
+  color: #ffffff;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: rgb(133, 13, 99);
+}
+
+.para {
+  text-align: center;
+  margin-top: 20px;
+}
