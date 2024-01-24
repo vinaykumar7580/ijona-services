@@ -135,11 +135,80 @@ tr:nth-child(even) {
   background-color: transparent;
   cursor: pointer;
   padding:0px 10px;
-  background-color: blueviolet;
-  color:white;
+  background-color: transparent;
+  /* color:white; */
 }
 
 .page {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width:25%;
+  text-align: left;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  
+}
+
+.close_button {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  /* margin-bottom: 10px; */
+  font-weight: bold;
+}
+
+.close_button:hover {
+  background: rgb(223, 20, 20);
+}
+
+.save_button {
+  background: green;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  /* margin-bottom: 10px; */
+  font-weight: bold;
+}
+
+.save_button:hover {
+  background: rgb(7, 159, 7);
+}
+
+.input {
+  width: 95%;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 7px;
+  font-size: 16px;
+}
+
+.buttonbox{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap:10px;
+  margin-top: 20px;
 }

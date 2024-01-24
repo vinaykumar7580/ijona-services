@@ -1,6 +1,7 @@
 import style from "../Style/home.module.css";
 import logo from "../Components/app-store.png";
 import { useState } from "react";
+import Modal from "../Components/Modal";
 
 let data = [
   {
@@ -31,7 +32,16 @@ let data = [
 ];
 
 function Home() {
-    const [page, setPage]=useState(1)
+  const [page, setPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={style.home}>
@@ -48,8 +58,12 @@ function Home() {
       <main>
         <div className={style.heading_box}>
           <h2 className={style.heading}>User Details</h2>
-          <button className={style.addbutton}>Add+</button>
+          <button className={style.addbutton} onClick={openModal}>
+            Add+
+          </button>
+          <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
+        
         <div>
           <table>
             <thead>
@@ -71,22 +85,32 @@ function Home() {
                     <td>
                       <span className={style.edit}>Edit</span>
                     </td>
-                    <td >
-                       <img className={style.delete_button} src="https://cdn-icons-png.flaticon.com/128/6221/6221968.png" alt="delete" />
+                    <td>
+                      <img
+                        className={style.delete_button}
+                        src="https://cdn-icons-png.flaticon.com/128/6221/6221968.png"
+                        alt="delete"
+                      />
                     </td>
                   </tr>
-                  
                 ))}
             </tbody>
           </table>
         </div>
 
         <div className={style.pagination}>
-            <div>
-                <button className={style.previous_button} disabled={page<=1} onClick={()=>setPage(page-1)}>{`<`}</button>
-                <span className={style.page}>{page}</span>
-                <button className={style.next_button} onClick={()=>setPage(page+1)}>{`>`}</button>
-            </div>
+          <div>
+            <button
+              className={style.previous_button}
+              disabled={page <= 1}
+              onClick={() => setPage(page - 1)}
+            >{`<`}</button>
+            <span className={style.page}>{page}</span>
+            <button
+              className={style.next_button}
+              onClick={() => setPage(page + 1)}
+            >{`>`}</button>
+          </div>
         </div>
       </main>
       <br />
