@@ -1,39 +1,17 @@
 import style from "../Style/home.module.css";
 import logo from "../Components/app-store.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "../Components/Modal";
-
-let data = [
-  {
-    id: 1,
-    name: "vinay hatwar",
-    email: "vinay@gmail.com",
-  },
-  {
-    id: 2,
-    name: "vinay hatwar",
-    email: "vinay@gmail.com",
-  },
-  {
-    id: 3,
-    name: "vinay hatwar",
-    email: "vinay@gmail.com",
-  },
-  {
-    id: 4,
-    name: "vinay hatwar",
-    email: "vinay@gmail.com",
-  },
-  {
-    id: 5,
-    name: "vinay hatwar",
-    email: "vinay@gmail.com",
-  },
-];
+import { AppContext } from "../Context/AppContext";
+import UpdateModal from "../Components/UpdateModal";
 
 function Home() {
-  const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [updateData, setUpdateData] = useState(null);
+
+  const { user, data, page, setPage, handleLogout, handleDeleteData } =
+    useContext(AppContext);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -43,6 +21,17 @@ function Home() {
     setIsModalOpen(false);
   };
 
+  const openUpdateModal = (id, name, email) => {
+    setUpdateData({ id, name, email });
+    setIsUpdateModalOpen(true);
+  };
+
+  const closeUpdateModal = () => {
+    setIsUpdateModalOpen(false);
+  };
+
+  console.log("updateData", updateData);
+
   return (
     <div className={style.home}>
       <nav>
@@ -50,8 +39,10 @@ function Home() {
           <img src={logo} alt="logo" />
         </div>
         <div className={style.profilebox}>
-          <p className={style.profile_name}>rahul</p>
-          <button className={style.logout_button}>Logout</button>
+          <p className={style.profile_name}>{user.username}</p>
+          <button className={style.logout_button} onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </nav>
 
@@ -63,7 +54,7 @@ function Home() {
           </button>
           <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
-        
+
         <div>
           <table>
             <thead>
@@ -78,16 +69,29 @@ function Home() {
             <tbody>
               {data &&
                 data?.map((el) => (
-                  <tr key={el.id}>
-                    <td>{el.id}</td>
+                  <tr key={el._id}>
+                    <td>{el._id}</td>
                     <td>{el.name}</td>
                     <td>{el.email}</td>
                     <td>
-                      <span className={style.edit}>Edit</span>
+                      <span
+                        className={style.edit}
+                        onClick={() =>
+                          openUpdateModal(el._id, el.name, el.email)
+                        }
+                      >
+                        Edit
+                      </span>
+                      <UpdateModal
+                        isOpen={isUpdateModalOpen}
+                        onClose={closeUpdateModal}
+                        data={updateData}
+                      />
                     </td>
                     <td>
                       <img
                         className={style.delete_button}
+                        onClick={() => handleDeleteData(el._id)}
                         src="https://cdn-icons-png.flaticon.com/128/6221/6221968.png"
                         alt="delete"
                       />

@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "../Style/register.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,8 +17,25 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     console.log(formData);
+
+    fetch(`http://localhost:8080/user/register`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("register", res);
+        alert(`${res.msg}`);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     setFormData({
       username: "",
@@ -24,7 +43,7 @@ function Register() {
     });
   };
 
-  const {username, password}=formData;
+  const { username, password } = formData;
 
   return (
     <div className={style.register}>

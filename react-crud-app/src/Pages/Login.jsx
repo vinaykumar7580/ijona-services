@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "../Style/register.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const { handleLogin } = useContext(AppContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +21,24 @@ function Login() {
     e.preventDefault();
 
     console.log(formData);
+    fetch(`http://localhost:8080/user/login`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("login", res);
+        alert(`${res.msg}`);
+        localStorage.setItem("token", res.token);
+        handleLogin(res.token);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     setFormData({
       username: "",

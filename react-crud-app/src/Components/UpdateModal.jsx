@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import style from "../Style/home.module.css";
 import { AppContext } from "../Context/AppContext";
 
-function Modal({ isOpen, onClose }) {
+function UpdateModal({ isOpen, onClose, data }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
   });
-  const { handleAddData } = useContext(AppContext);
+  const { handleUpdateData } = useContext(AppContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +15,12 @@ function Modal({ isOpen, onClose }) {
   };
 
   const handleSave = () => {
-    handleAddData(formData);
+    let payload = {
+      name: formData.name,
+      email: formData.email,
+    };
+
+    handleUpdateData(data.id, payload);
 
     setFormData({
       name: "",
@@ -29,7 +34,9 @@ function Modal({ isOpen, onClose }) {
       {isOpen && (
         <div className={style.modal_overlay}>
           <div className={style.modal}>
-            <h2 className={style.heading}>Add Customer</h2>
+            <h2 className={style.heading} style={{ color: "black" }}>
+              Update Customer
+            </h2>
 
             <form>
               <label>Name</label>
@@ -67,4 +74,4 @@ function Modal({ isOpen, onClose }) {
   );
 }
 
-export default Modal;
+export default UpdateModal;
