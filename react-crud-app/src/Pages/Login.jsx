@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     console.log(formData);
-    fetch(`http://localhost:8080/user/login`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/user/login`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

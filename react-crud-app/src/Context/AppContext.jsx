@@ -31,7 +31,7 @@ function AppContextProvider({ children }) {
 
   const handleGetUser = () => {
     if (token) {
-      fetch(`http://localhost:8080/user/userdata`, {
+      fetch(`https://concerned-puce-buffalo.cyclic.app/user/userdata`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function AppContextProvider({ children }) {
   };
 
   const handleGetData = () => {
-    fetch(`http://localhost:8080/data/get/${page}`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/data/get/${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function AppContextProvider({ children }) {
   };
 
   const handleAddData = (data) => {
-    fetch(`http://localhost:8080/data/add`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/data/add`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -89,7 +89,7 @@ function AppContextProvider({ children }) {
   };
 
   const handleUpdateData = (id, data) => {
-    fetch(`http://localhost:8080/data/update/${id}`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/data/update/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {
@@ -109,7 +109,7 @@ function AppContextProvider({ children }) {
   };
 
   const handleDeleteData = (id) => {
-    fetch(`http://localhost:8080/data/delete/${id}`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/data/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

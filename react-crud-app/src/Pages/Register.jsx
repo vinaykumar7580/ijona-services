@@ -20,7 +20,7 @@ function Register() {
 
     console.log(formData);
 
-    fetch(`http://localhost:8080/user/register`, {
+    fetch(`https://concerned-puce-buffalo.cyclic.app/user/register`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
