@@ -47,6 +47,7 @@ function UpdateModal({ isOpen, onClose, data }) {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
               <label>Email</label>
               <input
@@ -56,6 +57,7 @@ function UpdateModal({ isOpen, onClose, data }) {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </form>
 

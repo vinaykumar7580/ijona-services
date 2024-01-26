@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import style from "../Style/register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
+import { useToast } from "@chakra-ui/react";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function Login() {
   });
 
   const navigate = useNavigate();
+  const toast = useToast()
   const { handleLogin } = useContext(AppContext);
 
   const handleChange = (e) => {
@@ -30,14 +32,27 @@ function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("login", res);
-        alert(`${res.msg}`);
+        //console.log("login", res);
         localStorage.setItem("token", res.token);
         handleLogin(res.token);
+        toast({
+          title:`${res.msg}` ,
+          status: 'success',
+          position:"top",
+          duration: 3000,
+          isClosable: true,
+        })
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: 'Something Went Wrong!',
+          status: 'error',
+          position:"top",
+          duration: 3000,
+          isClosable: true,
+        })
       });
 
     setFormData({
@@ -61,6 +76,7 @@ function Login() {
             name="username"
             value={username}
             onChange={handleChange}
+            required
           />
           <label>Password</label>
           <input
@@ -70,6 +86,7 @@ function Login() {
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
           <button className={style.button} type="submit">
             Login

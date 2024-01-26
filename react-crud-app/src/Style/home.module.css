@@ -7,7 +7,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 100px;
+  padding: 10px 100px;
   background: linear-gradient(223.23deg, rgb(133, 13, 99), rgb(92, 98, 214));
 }
 
@@ -30,12 +30,13 @@ img {
 .profile_name {
   color: #ffffff;
   font-size: 18px;
+  
 }
 
 .logout_button {
   border: none;
   outline: none;
-  padding: 10px 20px;
+  padding: 7px 14px;
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
@@ -67,12 +68,16 @@ main {
 
 .heading {
   font-family: sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  
 }
 
 .addbutton {
   border: none;
   outline: none;
-  padding: 10px 20px;
+  padding: 7px 20px;
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
@@ -93,15 +98,18 @@ th {
   background-color: rgb(126, 194, 23);
   color: #ffffff;
   padding: 10px 0px;
+  border:1px solid white;
 }
 
 td {
   padding: 10px 0px;
+  border:1px solid white;
 }
 
 tr:nth-child(even) {
   background-color: rgb(126, 194, 23);
   color: #ffffff;
+  border:1px solid white;
 }
 
 .edit {
@@ -115,6 +123,8 @@ tr:nth-child(even) {
 .delete_button {
   width: 20px;
   cursor: pointer;
+  text-align: center;
+  margin: auto;
 }
 
 .pagination {
@@ -170,7 +180,7 @@ tr:nth-child(even) {
   background: red;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 7px 14px;
   border-radius: 5px;
   cursor: pointer;
   /* margin-bottom: 10px; */
@@ -185,7 +195,7 @@ tr:nth-child(even) {
   background: green;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 7px 14px;
   border-radius: 5px;
   cursor: pointer;
   /* margin-bottom: 10px; */
@@ -203,6 +213,8 @@ tr:nth-child(even) {
   margin-bottom: 10px;
   padding: 7px;
   font-size: 16px;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 .buttonbox{
@@ -211,4 +223,15 @@ tr:nth-child(even) {
   align-items: center;
   gap:10px;
   margin-top: 20px;
+}
+
+.empty_data_heading{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 30px;
+  background-color: rgb(126, 194, 23);
+  color:red;
+  padding:10px;
+  border-radius: 5px;
+  
 }

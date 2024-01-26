@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import style from "../Style/register.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ function Register() {
   });
 
   const navigate = useNavigate();
+  const toast = useToast()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,12 +31,25 @@ function Register() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("register", res);
-        alert(`${res.msg}`);
+        //console.log("register", res);
+        toast({
+          title:`${res.msg}` ,
+          status: 'success',
+          position:"top",
+          duration: 3000,
+          isClosable: true,
+        })
         navigate("/login");
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: 'Something Went Wrong!',
+          status: 'error',
+          position:"top",
+          duration: 3000,
+          isClosable: true,
+        })
       });
 
     setFormData({
@@ -48,7 +63,7 @@ function Register() {
   return (
     <div className={style.register}>
       <div className={style.container}>
-        <h2 className={style.heading}>Register</h2>
+        <h1 className={style.heading}>Register</h1>
         <form onSubmit={handleSubmit}>
           <label>Username</label>
           <input
@@ -58,6 +73,7 @@ function Register() {
             name="username"
             value={username}
             onChange={handleChange}
+            required
           />
           <label>Password</label>
           <input
@@ -67,6 +83,7 @@ function Register() {
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
           <button className={style.button} type="submit">
             Register

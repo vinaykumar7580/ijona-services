@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,26 +9,26 @@ function AppContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  const navigate=useNavigate()
-
-  useEffect(()=>{
-    setToken(localStorage.getItem("token"))
-  },[token])
+  const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
-    if(token){
-      handleGetUser();
+    setToken(localStorage.getItem("token"));
+  }, [token]);
 
+  useEffect(() => {
+    if (token) {
+      handleGetUser();
     }
   }, [token]);
 
   useEffect(() => {
-    if(token){
+    if (token) {
       handleGetData();
-
     }
-  }, [page,token]);
+  }, [page, token]);
 
   const handleGetUser = () => {
     if (token) {
@@ -36,7 +37,6 @@ function AppContextProvider({ children }) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `${localStorage.getItem("token")}`,
-          
         },
       })
         .then((res) => res.json())
@@ -46,6 +46,13 @@ function AppContextProvider({ children }) {
         })
         .catch((err) => {
           console.log(err);
+          toast({
+            title: "Something Went Wrong!",
+            status: "error",
+            position: "top",
+            duration: 3000,
+            isClosable: true,
+          });
         });
     }
   };
@@ -56,15 +63,24 @@ function AppContextProvider({ children }) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `${localStorage.getItem("token")}`,
-        
       },
     })
       .then((res) => res.json())
       .then((res) => {
+        setLoading(true);
         setData(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
+        toast({
+          title: "Something Went Wrong!",
+          status: "error",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
       });
   };
 
@@ -75,16 +91,28 @@ function AppContextProvider({ children }) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `${localStorage.getItem("token")}`,
-        
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        alert(`${res.msg}`);
+        toast({
+          title: `${res.msg}`,
+          status: "success",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
         handleGetData();
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: "Something Went Wrong!",
+          status: "error",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
       });
   };
 
@@ -95,16 +123,28 @@ function AppContextProvider({ children }) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `${localStorage.getItem("token")}`,
-        
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        alert(`${res.msg}`);
+        toast({
+          title: `${res.msg}`,
+          status: "success",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
         handleGetData();
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: "Something Went Wrong!",
+          status: "error",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
       });
   };
 
@@ -114,16 +154,28 @@ function AppContextProvider({ children }) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `${localStorage.getItem("token")}`,
-        
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        alert(`${res.msg}`);
+        toast({
+          title: `${res.msg}`,
+          status: "success",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
         handleGetData();
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: "Something Went Wrong!",
+          status: "error",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
       });
   };
 
@@ -133,7 +185,7 @@ function AppContextProvider({ children }) {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/login");
   };
 
   const value = {
@@ -141,6 +193,7 @@ function AppContextProvider({ children }) {
     user,
     data,
     page,
+    loading,
     setPage,
     handleGetData,
     handleAddData,

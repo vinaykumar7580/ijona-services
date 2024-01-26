@@ -40,6 +40,7 @@ function Modal({ isOpen, onClose }) {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
               <label>Email</label>
               <input
@@ -49,6 +50,7 @@ function Modal({ isOpen, onClose }) {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </form>
 
